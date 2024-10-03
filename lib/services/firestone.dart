@@ -19,4 +19,8 @@ class FirestoneService {
         .doc(docID)
         .update({'note': newNote, 'timestamp': Timestamp.now()});
   }
+
+  Future<void> deleteNote(String docID) {
+    return notes.doc(docID).delete();
+  }
 }
