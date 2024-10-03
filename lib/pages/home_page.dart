@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text("Notes"),
       ),
       floatingActionButton: FloatingActionButton(
@@ -70,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           IconButton(
                               onPressed: () => openNoteBox(docID: docID),
-                              icon: const Icon(Icons.settings)),
+                              icon: const Icon(Icons.edit)),
                           IconButton(
                               onPressed: () =>
                                   firestoneService.deleteNote(docID),
