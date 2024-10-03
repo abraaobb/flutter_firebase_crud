@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
 
   final TextEditingController textController = TextEditingController();
 
-  void openNoteBox() {
+  void openNoteBox({String? docID}) {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -24,11 +24,15 @@ class _HomePageState extends State<HomePage> {
               actions: [
                 ElevatedButton(
                     onPressed: () {
-                      firestoneService.addNote(textController.text);
+                      if (docID == null) {
+                        firestoneService.addNote(textController.text);
+                      } else {
+                        firestoneService.updateNote(docID, textController.text);
+                      }
                       textController.clear();
                       Navigator.pop(context);
                     },
-                    child: Text('Add'))
+                    child: const Text('Add'))
               ],
             ));
   }
@@ -37,7 +41,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Notes"),
+        title: const Text("Notes"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: openNoteBox,
@@ -61,6 +65,9 @@ class _HomePageState extends State<HomePage> {
 
                     return ListTile(
                       title: Text(noteText),
+                      trailing: IconButton(
+                          onPressed: () => openNoteBox(docID: docID),
+                          icon: const Icon(Icons.settings)),
                     );
                   });
             } else {

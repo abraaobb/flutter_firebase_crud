@@ -13,4 +13,10 @@ class FirestoneService {
         notes.orderBy('timestamp', descending: true).snapshots();
     return notesStream;
   }
+
+  Future<void> updateNote(String docID, String newNote) {
+    return notes
+        .doc(docID)
+        .update({'note': newNote, 'timestamp': Timestamp.now()});
+  }
 }
