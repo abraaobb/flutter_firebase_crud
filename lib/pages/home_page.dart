@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
                       textController.clear();
                       Navigator.pop(context);
                     },
-                    child: const Text('Add'))
+                    child: const Text('Adicionar'))
               ],
             ));
   }
